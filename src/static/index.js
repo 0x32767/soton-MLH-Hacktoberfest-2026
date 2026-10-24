@@ -1,6 +1,12 @@
 part_id = document.getElementById('part_id').innerHTML;
 console.log("Editing: ", part_id);
 
+let overlap = 50;
+let part_canvases = {"HEAD": [650,650], "TORSO": [750,650], "LEG": [750,1100], "ARM": [750,600]};
+let canvas = document.getElementById('myCanvas');
+canvas.height = part_canvases[part_id][0];
+canvas.width = part_canvases[part_id][1];
+
 paper.install(window);
 // Keep global references to both tools, so the HTML
 // links below can access them.

@@ -5,8 +5,7 @@ from PIL import Image
 
 
 class Character:
-    def __init__(self, game_folder_path, head_str, torso_str, arm_str, leg_str) -> None:
-        self.path = game_folder_path
+    def __init__(self, head_str, torso_str, arm_str, leg_str) -> None:
         self.head = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
         self.body = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
         self.arm = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
@@ -34,5 +33,9 @@ class Character:
         )
 
     def save(self):
-        output_path = f"{self.path}/character.png"
-        self.character.save(output_path, optimize=True)
+        character_png = io.BytesIO()
+        self.character.save(character_png, format="PNG", optimize=True)
+        character_bytes = character_png.getvalue()
+        base64_character_bytes = base64.b64encode(character_bytes)
+        base64_character_str = base64_character_bytes.decode("ascii")
+        return base64_character_str

@@ -10,3 +10,8 @@
   display: grid;
   grid-template-columns: auto auto;
 }
+
+#grid {
+	display: grid;
+	grid-template-columns: auto auto;
+}
