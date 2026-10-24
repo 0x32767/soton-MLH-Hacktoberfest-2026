@@ -38,5 +38,5 @@ window.onload = function() {
 function submit_canvas() {
 	let canvas = document.getElementById('myCanvas');
 	let canvasURL = canvas.toDataURL("image/png");
-	let img = document.getElementById("image").src = canvasURL;
+	let img = document.getElementById("image").value = canvasURL;
 }
