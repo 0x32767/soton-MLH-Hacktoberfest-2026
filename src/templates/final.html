@@ -1,1 +1,3 @@
-<img src='data:image/png;base64,{{data}}'><br>
+{% for data in images %}
+	<img src='data:image/png;base64,{{data}}'><br>
+{% endfor %}

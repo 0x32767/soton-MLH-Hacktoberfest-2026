@@ -68,7 +68,7 @@ def see_all():
     res = ""
     for data in images:
         res += f"<img src='data:image/png;base64,{data}'><br>"
-    return res
+    return render_template("final.html", images=images)
 
 if __name__ == "__main__":
     app.run(debug=True)
