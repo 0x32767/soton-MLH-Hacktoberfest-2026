@@ -14,9 +14,12 @@ window.onload = function() {
 	var path;
 	function onMouseDown(event) {
 		colour = document.getElementById('colour-select').value;
-		console.log(colour);
+		width = document.getElementById('width-select').value;
+		console.log(colour,width);
 		path = new Path();
 		path.strokeColor = colour;
+		path.strokeWidth = width;
+		
 		path.add(event.point);
 	}
 

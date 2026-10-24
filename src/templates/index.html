@@ -9,20 +9,23 @@
 			<canvas id="myCanvas" resize></canvas><br/>
 
 			<!-- Colour select -->
+			<label>Colour</label><br/>
 			<select id="colour-select" name="colour">
 				<option value="black"/>Black</option>
 				<option value="red"/>Red</option>
-			</select>
-
+			</select><br/><br/>
+			<label>Line Width</label><br/><input type="range" id="width-select" value="2" max="20" min="1">
+			<br/>
 			<!-- Tool select -->
-			<a href="#" onclick="tool1.activate();">Lines</a>
-			<a href="#" onclick="tool2.activate();">Clouds</a>
+			<a href="#" onclick="tool1.activate();">Lines</a><br/>
+			<a href="#" onclick="tool2.activate();">Clouds</a><br/>
+			<br/>
 
 			<form action="/submit-part" method="POST" enctype="multipart/form-data">
+				<input value="SUBMIT" type="submit"/>
 				<input type="hidden" value="{{game_id}}" name="game_id"/>
 				<input type="hidden" value="{{part_id}}" name="part_id"/>
 				<input style="display:none" id="image" name="part" onsubmit="myCanvas"/>
-				<input value="SUBMIT" type="submit"/>
 			</form>
 	</body>
 </html>
