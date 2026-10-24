@@ -74,7 +74,9 @@ class Character:
 
     def save(self, image_to_save=None):
         if image_to_save is None:
-            image_to_save = self.character
+            self._merge()
+            self._apply_background()
+            image_to_save = self.image
         image_png = io.BytesIO()
         image_to_save.save(image_png, format="PNG")
         image_bytes = image_png.getvalue()
