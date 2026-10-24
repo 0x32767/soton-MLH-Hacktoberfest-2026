@@ -1,7 +1,5 @@
-/*
 part_id = document.getElementById('part_id').innerHTML;
 console.log("Editing: ", part_id);
-*/
 
 paper.install(window);
 // Keep global references to both tools, so the HTML
