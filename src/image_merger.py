@@ -6,7 +6,7 @@ from PIL import Image
 
 class Character:
     def __init__(self, game_id) -> None:
-        self.path = f"../Images/{game_id}"
+        self.path = f"../images/{game_id}"
         self.head = Image.open(f"{self.path}/head.png")
         self.body = Image.open(f"{self.path}/body.png")
         self.arm = Image.open(f"{self.path}/arm.png")
