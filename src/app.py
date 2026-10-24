@@ -12,7 +12,7 @@ parts = {}
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
+def index():
     global taken_parts
 
     part_id = None
@@ -26,19 +26,14 @@ def hello_world():
 
     return render_template("index.html", part_id=part_id)
 
-@app.route("/draw-part")
-def index():
-    # returns main page for drawing shit
-    return "NOT IMPLEMENTED (DRAW)"
-
-
 @app.route("/submit-part", methods=["POST"])
 def submit_part():
     part_id = request.form["part_id"]
+    if part_id in parts:
+        return "Part has already been done! Draw faster!  <a href='/'>go back!</a>"
     part = request.form["part"]
     parts[part_id] = part.removeprefix("data:image/png;base64,")
-    print(part)
-    return f"YOUR IMAGE LOOKS LIKE<br><img src='{part}'><br>{part_id=}"
+    return f"YOUR {part_id} LOOKS LIKE<br><img src='{part}'>"
 
 
 @app.route("/done")
