@@ -7,7 +7,10 @@ from PIL import Image
 
 class Character:
     def __init__(self) -> None:
-        pass
+        self.torso = None
+        self.arm = None
+        self.leg = None
+        self.head = None
 
     def add_torso(self, torso_str):
         self.torso = Image.open(
