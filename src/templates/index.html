@@ -2,9 +2,13 @@
 <html>
 	<head>
 		<link href="/static/index.css" rel="stylesheet"/>
+		<link href="/static/technical.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<span id="part_id">{{part_id}}</span>
+		<img style="display:none" id="pumpkin" src="/static/spooky/pumpkin.png" />
+		<img style="display:none" id="web" src="/static/spooky/spiderweb.png" />
+		<img style="display:none" id="skull" src="/static/spooky/.png" />
 
 		<div id="grid">
 			<canvas id="myCanvas" resize></canvas>
@@ -22,12 +26,16 @@
 					<option value="blue"/>Blue</option>
 					<option value="purple"/>Purple</option>
 				</select><br/><br/>
-				<label>Line Width</label><br/><input type="range" id="width-select" value="2"range max="20" min="1">
+				<label>Line Width</label><br/><input type="range" id="width-select" value="10" range max="50" min="1">
 				<br/>
 				<!-- Tool select -->
-				<button onclick="tool1.activate();">Lines</button><br/>
-				<button onclick="tool2.activate();">Clouds</button><br/>
-				<button onclick="tool3.activate();">Circle</button><br/>
+				<button onclick="tool1.activate();">Lines <img src="/static/images/pen.png" class="label-image" /></button><br/>
+				<button onclick="tool2.activate();">Clouds <img src="/static/images/cloud.png" class="label-image" /></button><br/>
+				<button onclick="tool3.activate();">Circle <img src="/static/images/cloud.png" class="label-image" /></button><br/>
+				<button onclick="tool4.activate();">Square</button><br/>
+				<button onclick="tool5.activate();">Pumpkin</button><br/>
+				<button onclick="tool6.activate();">Web</button><br/>
+				<button onclick="tool7.activate();">???</button><br/>
 				<br/>
 
 				<form action="/submit-part" method="POST" enctype="multipart/form-data" onsubmit="submit_canvas()">

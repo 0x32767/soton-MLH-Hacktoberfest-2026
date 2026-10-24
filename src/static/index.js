@@ -34,11 +34,32 @@ window.onload = function() {
 	function mouseDownCircle(event) {
 		colour = document.getElementById('colour-select').value;
 		width = document.getElementById('width-select').value;
-		path = new Path.Circle();
+		path = new Path.Circle(event.point,width*2);
 		path.strokeColor = colour;
-		path.strokeWidth = width;
-		
-		path.add(event.point);
+	}
+	function mouseDownSquare(event) {
+		colour = document.getElementById('colour-select').value;
+		width = document.getElementById('width-select').value;
+		path = new Path.Rectangle(new Point(event.point.x-width,event.point.y-width),new Size(width*2,width*2));
+		path.strokeColor = colour;
+	}
+	function mouseDownPumpkin(event) {
+		width = document.getElementById('width-select').value;
+		let raster = new Raster('pumpkin');
+		raster.size = new Size(width*15,width*15);
+		raster.position = event.point;
+	}
+	function mouseDownWeb(event) {
+		width = document.getElementById('width-select').value;
+		let raster = new Raster('web');
+		raster.size = new Size(width*15,width*15);
+		raster.position = event.point;
+	}
+	function mouseDownSkull(event) {
+		width = document.getElementById('width-select').value;
+		let raster = new Raster('skull');
+		raster.size = new Size(width*15,width*15);
+		raster.position = event.point;
 	}
 
 	tool1 = new Tool();
@@ -51,8 +72,15 @@ window.onload = function() {
 	tool2.onMouseDrag = function(event) { path.arcTo(event.point); }
 
 	tool3 = new Tool();
-	tool3.minDistance = 20;
 	tool3.onMouseDown = mouseDownCircle;
+	tool4 = new Tool();
+	tool4.onMouseDown = mouseDownSquare;
+	tool5 = new Tool();
+	tool5.onMouseDown = mouseDownPumpkin;
+	tool6 = new Tool();
+	tool6.onMouseDown = mouseDownWeb;
+	tool7 = new Tool();
+	tool7.onMouseDown = mouseDownWeb;
 }
 
 function submit_canvas() {
