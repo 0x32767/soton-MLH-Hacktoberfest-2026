@@ -8,7 +8,7 @@ class Character:
     def __init__(self, game_id) -> None:
         self.path = f"../images/{game_id}"
         self.head = Image.open(f"{self.path}/head.png")
-        self.body = Image.open(f"{self.path}/body.png")
+        self.body = Image.open(f"{self.path}/torso.png")
         self.arm = Image.open(f"{self.path}/arm.png")
         self.leg = Image.open(f"{self.path}/leg.png")
         self._merge()
