@@ -40,7 +40,7 @@ class Character:
 
     def save(self):
         character_png = io.BytesIO()
-        self.character.save(character_png, format="PNG", optimize=True)
+        self.character.save(character_png, format="PNG")
         character_bytes = character_png.getvalue()
         base64_character_bytes = base64.b64encode(character_bytes)
         base64_character_str = base64_character_bytes.decode("ascii")
