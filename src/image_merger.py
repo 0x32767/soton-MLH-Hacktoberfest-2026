@@ -1,16 +1,16 @@
-import os
-import sys
+import base64
+import io
 
 from PIL import Image
 
 
 class Character:
-    def __init__(self, game_id) -> None:
-        self.path = f"../images/{game_id}"
-        self.head = Image.open(f"{self.path}/head.png")
-        self.body = Image.open(f"{self.path}/torso.png")
-        self.arm = Image.open(f"{self.path}/arm.png")
-        self.leg = Image.open(f"{self.path}/leg.png")
+    def __init__(self, game_folder_path, head_str, torso_str, arm_str, leg_str) -> None:
+        self.path = game_folder_path
+        self.head = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
+        self.body = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
+        self.arm = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
+        self.leg = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
         self._merge()
 
     def _merge(self):
