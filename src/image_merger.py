@@ -23,14 +23,15 @@ class Character:
         self.character.paste(self.torso, (self.arm.width, self.head.height))
         self.character.paste(self.arm, (0, self.head.height))
         self.character.paste(
-            self.arm, (self.arm.width + self.torso.width, self.head.height)
+            self.arm.transpose(method=Image.Transpose.FLIP_LEFT_RIGHT),
+            (self.arm.width + self.torso.width, self.head.height),
         )
         self.character.paste(
             self.leg,
             ((width - self.leg.width) // 2, self.head.height + self.torso.height),
         )
         self.character.paste(
-            self.leg,
+            self.leg.transpose(method=Image.Transpose.FLIP_LEFT_RIGHT),
             ((width // 2) - self.leg.width, self.head.height + self.torso.height),
         )
 
