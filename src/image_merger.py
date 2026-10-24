@@ -39,7 +39,7 @@ class Character:
     def get_preview_for_leg(self):
         return self.save(
             self.torso.crop(
-                (0, self.torso.height - 50, self.torso.width, self.torso.height)
+                (0, self.torso.height - 50, self.torso.width // 2, self.torso.height)
             )
         )
 
