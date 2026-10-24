@@ -5,13 +5,21 @@ from flask import (
 # HEAD, ARM, LEG, TORSO
 ALL_PARTS = ["HEAD", "ARM", "LEG", "TORSO"]
 parts = {}
+game_id = 0
 
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return render_template("index.html")
+    part_id = None
+
+    for part in ALL_PARTS:
+        if part not in parts:
+            part_id = part
+            break
+
+    return render_template("index.html", game_id=game_id, part_id=part)
 
 @app.route("/draw-part")
 def index():
