@@ -1,18 +1,44 @@
 import base64
 import io
+from pathlib import Path
 
 from PIL import Image
 
 
 class Character:
-    def __init__(self, head_str, torso_str, arm_str, leg_str) -> None:
-        self.head = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
+    def __init__(self) -> None:
+        pass
+
+    def add_torso(self, torso_str):
         self.torso = Image.open(
             io.BytesIO(base64.decodebytes(bytes(torso_str, "utf-8")))
         )
+
+    def add_arm(self, arm_str):
         self.arm = Image.open(io.BytesIO(base64.decodebytes(bytes(arm_str, "utf-8"))))
+
+    def add_leg(self, leg_str):
         self.leg = Image.open(io.BytesIO(base64.decodebytes(bytes(leg_str, "utf-8"))))
-        self._merge()
+
+    def add_head(self, head_str):
+        self.head = Image.open(io.BytesIO(base64.decodebytes(bytes(head_str, "utf-8"))))
+
+    def get_preview_for_torso(self):
+        return self.save(
+            self.head.crop(
+                (0, self.head.height - 50, self.head.width, self.head.height)
+            )
+        )
+
+    def get_preview_for_arm(self):
+        return self.save(self.torso.crop((0, 0, 50, self.torso.height)))
+
+    def get_preview_for_leg(self):
+        return self.save(
+            self.torso.crop(
+                (0, self.torso.height - 50, self.torso.width, self.torso.height)
+            )
+        )
 
     def _merge(self):
         height = self.head.height + self.torso.height + self.leg.height
@@ -38,10 +64,17 @@ class Character:
             ),
         )
 
-    def save(self):
-        character_png = io.BytesIO()
-        self.character.save(character_png, format="PNG")
-        character_bytes = character_png.getvalue()
-        base64_character_bytes = base64.b64encode(character_bytes)
-        base64_character_str = base64_character_bytes.decode("ascii")
-        return base64_character_str
+    def _apply_background(self):
+        self.image = Image.open(f"{Path(__file__)}/static/spooky/background.jpg")
+        char_pad = (self.image.width - self.character.width) // 2
+        self.image.paste(self.character, (char_pad, 0))
+
+    def save(self, image_to_save=None):
+        if image_to_save is None:
+            image_to_save = self.character
+        image_png = io.BytesIO()
+        image_to_save.save(image_png, format="PNG")
+        image_bytes = image_png.getvalue()
+        base64_image_bytes = base64.b64encode(image_bytes)
+        base64_image_str = base64_image_bytes.decode("ascii")
+        return base64_image_str
