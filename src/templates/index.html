@@ -4,7 +4,7 @@
 		<link href="/static/index.css" rel="stylesheet"/>
 	</head>
 	<body>
-		<span style="display:none" id="part_id">{{part_id}}</span>
+		<span id="part_id">{{part_id}}</span>
 
 		<div id="grid">
 			<canvas id="myCanvas" resize></canvas>
@@ -25,8 +25,9 @@
 				<label>Line Width</label><br/><input type="range" id="width-select" value="2"range max="20" min="1">
 				<br/>
 				<!-- Tool select -->
-				<a href="#" onclick="tool1.activate();">Lines</a><br/>
-				<a href="#" onclick="tool2.activate();">Clouds</a><br/>
+				<button onclick="tool1.activate();">Lines</button><br/>
+				<button onclick="tool2.activate();">Clouds</button><br/>
+				<button onclick="tool3.activate();">Circle</button><br/>
 				<br/>
 
 				<form action="/submit-part" method="POST" enctype="multipart/form-data" onsubmit="submit_canvas()">
