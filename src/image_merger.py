@@ -32,3 +32,7 @@ class Character:
             self.leg,
             ((width // 2) - self.leg.width, self.head.height + self.body.height),
         )
+
+    def save(self):
+        output_path = f"{self.path}/character.png"
+        self.character.save(output_path, optimize=True)
