@@ -1,3 +1,8 @@
+/*
+part_id = document.getElementById('part_id').innerHTML;
+console.log("Editing: ", part_id);
+*/
+
 paper.install(window);
 // Keep global references to both tools, so the HTML
 // links below can access them.
@@ -43,5 +48,5 @@ window.onload = function() {
 function submit_canvas() {
 	let canvas = document.getElementById('myCanvas');
 	let canvasURL = canvas.toDataURL("image/png");
-	let img = document.getElementById("image").value = canvasURL;
+	document.getElementById("image").value = canvasURL;
 }
