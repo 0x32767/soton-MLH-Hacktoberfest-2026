@@ -30,3 +30,6 @@ label{
 	display: grid;
 	grid-template-columns: auto auto;
 }
+a {
+	color: cyan;
+}
