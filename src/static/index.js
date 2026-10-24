@@ -13,8 +13,10 @@ window.onload = function() {
 	// Both share the mouseDown event:
 	var path;
 	function onMouseDown(event) {
+		colour = document.getElementById('colour-select').value;
+		console.log(colour);
 		path = new Path();
-		path.strokeColor = 'black';
+		path.strokeColor = colour;
 		path.add(event.point);
 	}
 
