@@ -17,18 +17,18 @@ def index():
     global body
 
     if body.head is None:
-        return render_template("index.html", part_id="HEAD")
+        return render_template("index.html", part_id="HEAD", )
     elif body.torso is None:
         # get preview for head
-        body.get_preview_for_torso()
-        return render_template("index.html", part_id="TORSO")
+        
+        return render_template("index.html", part_id="TORSO", data=body.get_preview_for_torso())
     elif body.arm is None:
         # get preview for arm
-        body.get_preview_for_arm()
-        return render_template("index.html", part_id="ARM")
+        return render_template("index.html", part_id="ARM", data=body.get_preview_for_arm())
+        
     elif body.leg is None:
-        body.get_preview_for_leg()
-        return render_template("index.html", part_id="LEG")
+        
+        return render_template("index.html", part_id="LEG", data=body.get_preview_for_leg())
     else:
         return "WAIT"
         # return render_template("index.html", part_id=part_id)
@@ -70,7 +70,7 @@ def is_done():
 def see_all():
     res = ""
     for data in images:
-        res += f"<img src='data:image/png;base64,{data}'>"
+        res += f"<img src='data:image/png;base64,{data}'><br>"
     return res
 
 if __name__ == "__main__":
