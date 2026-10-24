@@ -7,6 +7,7 @@ from image_merger import Character
 # HEAD, ARM, LEG, TORSO
 ALL_PARTS = ["HEAD", "ARM", "LEG", "TORSO"]
 parts = {}
+images = []
 
 
 app = Flask(__name__)
@@ -28,34 +29,38 @@ def index():
 
 @app.route("/submit-part", methods=["POST"])
 def submit_part():
+    global parts, imgaes
+
     part_id = request.form["part_id"]
     if part_id in parts:
         return "Part has already been done! Draw faster!  <a href='/'>go back!</a>"
+
     part = request.form["part"]
     parts[part_id] = part.removeprefix("data:image/png;base64,")
-    return f"YOUR {part_id} LOOKS LIKE<br><img src='{part}'>"
 
+    if len(parts) == len(ALL_PARTS):
+        character = Character(
+            head_str=parts["HEAD"],
+            torso_str=parts["TORSO"],
+            arm_str=parts["ARM"],
+            leg_str=parts["LEG"],
+        )
+        data = character.save()
+        parts = {}
+        images.append(data)
+
+    return render_template("display.html", part_id=part_id, part=part)
 
 @app.route("/done")
 def is_done():
-    return {
-        "status": len(parts) / len(ALL_PARTS),
-        "done": len(parts) == len(ALL_PARTS)
-    }
+    return {"done": len(images)}
 
-@app.route("/see-result")
-def see_result():
-    global parts
-    character = Character(
-        head_str=parts["HEAD"],
-        torso_str=parts["TORSO"],
-        arm_str=parts["ARM"],
-        leg_str=parts["LEG"],
-    )
-    data = character.save()
-    parts = {}
-    return f"<img src='data:image/png;base64,{data}'>"
-
+@app.route("/see-all")
+def see_all():
+    res = ""
+    for data in images:
+        res += f"<img src='data:image/png;base64,{data}'>"
+    return res
 
 if __name__ == "__main__":
     app.run(debug=True)
