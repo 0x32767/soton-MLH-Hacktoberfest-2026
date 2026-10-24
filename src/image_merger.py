@@ -1,6 +1,7 @@
 import base64
 import io
 
+import torch
 from PIL import Image
 
 
