@@ -28,11 +28,11 @@ class Character:
         )
         self.character.paste(
             self.leg,
-            ((width - self.leg.width) // 2, self.head.height + self.torso.height),
+            ((width // 2) - self.leg.width, self.head.height + self.torso.height),
         )
         self.character.paste(
             self.leg.transpose(method=Image.Transpose.FLIP_LEFT_RIGHT),
-            ((width // 2) - self.leg.width, self.head.height + self.torso.height),
+            ((width - self.leg.width) // 2, self.head.height + self.torso.height),
         )
 
     def save(self):
