@@ -11,8 +11,8 @@
 			<canvas id="myCanvas" resize></canvas>
 			<button onclick="submit_canvas()">SUBMIT</button>
 			<form action="/submit-part" method="POST">
-				<input value="" name="game_id"/>
-				<input value="" name="part_id"/>
+				<input type="hidden" value="" name="game_id"/>
+				<input type="hiden" value="" name="part_id"/>
 				<input type="image" id="image" name="part" onsubmit="submit();"/>
 				<input type="submit"/>
 			</form>
