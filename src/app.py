@@ -1,4 +1,6 @@
-from flask import Flask
+from flask import (
+	Flask, redirect, url_for, render_template, request, session
+)
 
 app = Flask(__name__)
 
@@ -14,4 +16,4 @@ def index():
 
 @app.route("/submit-part")
 def submit_part():
-    ...
+    return render_template('index.html')
