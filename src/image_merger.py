@@ -68,7 +68,7 @@ class Character:
         )
 
     def _apply_background(self):
-        self.image = Image.open(f"{Path(__file__)}/static/spooky/background.jpg")
+        self.image = Image.open(f"{Path(__file__).parent}/static/spooky/background.jpg")
         char_pad = (self.image.width - self.character.width) // 2
         self.image.paste(self.character, (char_pad, 0))
 
