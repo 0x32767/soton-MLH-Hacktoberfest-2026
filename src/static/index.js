@@ -2,10 +2,30 @@ part_id = document.getElementById('part_id').innerHTML;
 console.log("Editing: ", part_id);
 
 let overlap = 50;
-let part_canvases = {"HEAD": [650,650], "TORSO": [750,650], "LEG": [750,1100], "ARM": [750,600]};
-let canvas = document.getElementById('myCanvas');
-canvas.height = part_canvases[part_id][0];
-canvas.width = part_canvases[part_id][1];
+let part_canvases = {"HEAD": [650,650], "TORSO": [750,650], "LEG": [750,600], "ARM": [750,600]};
+let previous_overlap = document.getElementById('previous-overlap');
+base64_data = previous_overlap.src;
+if (part_id == "HEAD" || part_id == "LEG" || part_id == "TORSO") {
+	previous_overlap.height = 50;
+	previous_overlap.width = part_canvases[part_id][1];
+	let canvas = document.getElementById('myCanvas');
+	canvas.height = part_canvases[part_id][0];
+	canvas.width = part_canvases[part_id][1];
+}
+else {
+	drawing_div = document.getElementById('drawing');
+	drawing_div.style = "display:grid; grid-template-columns: auto auto;";
+	drawing_div.innerHTML = `
+				<canvas id="myCanvas" resize></canvas>
+				<img id="previous-overlap" src="${base64_data}" />
+	`;
+	let previous_overlap = document.getElementById('previous-overlap');
+	previous_overlap.width = 50;
+	previous_overlap.height = part_canvases[part_id][0];
+	let canvas = document.getElementById('myCanvas');
+	canvas.height = part_canvases[part_id][0];
+	canvas.width = part_canvases[part_id][1];
+}
 
 paper.install(window);
 // Keep global references to both tools, so the HTML

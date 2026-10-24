@@ -11,7 +11,10 @@
 		<img style="display:none" id="skull" src="/static/spooky/skull.png" />
 
 		<div id="grid">
-			<canvas id="myCanvas" resize></canvas>
+			<div id="drawing">
+				<img id="previous-overlap" src="data:image/png;base64,{{data}}" />
+				<canvas id="myCanvas" resize></canvas>
+			</div>
 
 			<div id="buttons">
 				<!-- Colour select -->
