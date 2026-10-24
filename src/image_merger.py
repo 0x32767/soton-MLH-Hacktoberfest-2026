@@ -68,7 +68,7 @@ class Character:
         )
 
     def _apply_background(self):
-        self.image = Image.open(f"{Path(__file__).parent}/static/spooky/background.jpg")
+        self.image = Image.open(f"{Path(__file__).parent}/static/spooky/background.png")
         char_pad = (self.image.width - self.character.width) // 2
         self.image.paste(self.character, (char_pad, 0))
 
@@ -76,7 +76,7 @@ class Character:
         if image_to_save is None:
             self._merge()
             self._apply_background()
-            image_to_save = self.image
+            image_to_save = self.character
         image_png = io.BytesIO()
         image_to_save.save(image_png, format="PNG")
         image_bytes = image_png.getvalue()

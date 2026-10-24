@@ -20,14 +20,11 @@ def index():
         return render_template("index.html", part_id="HEAD", )
     elif body.torso is None:
         # get preview for head
-        
         return render_template("index.html", part_id="TORSO", data=body.get_preview_for_torso())
     elif body.arm is None:
         # get preview for arm
         return render_template("index.html", part_id="ARM", data=body.get_preview_for_arm())
-        
     elif body.leg is None:
-        
         return render_template("index.html", part_id="LEG", data=body.get_preview_for_leg())
     else:
         return "WAIT"
