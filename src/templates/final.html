@@ -1,3 +1,16 @@
-{% for data in images %}
-	<img src='data:image/png;base64,{{data}}'><br>
-{% endfor %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="/static/index.css" rel="stylesheet"/>
+		<link href="/static/technical.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<h1>Welcome to the gallery</h1><br/>
+		<div id="final-showcase">
+			{% for data in images %}
+				<h1>Image:</h1>
+				<img src='data:image/png;base64,{{data}}'><br>
+			{% endfor %}
+		</div>
+	</body>
+</html>
