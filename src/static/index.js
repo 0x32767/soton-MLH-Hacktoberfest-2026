@@ -34,13 +34,13 @@ window.onload = function() {
 	function mouseDownCircle(event) {
 		colour = document.getElementById('colour-select').value;
 		width = document.getElementById('width-select').value;
-		path = new Path.Circle(event.point,width*2);
+		path = new Path.Circle(event.point,width*3);
 		path.strokeColor = colour;
 	}
 	function mouseDownSquare(event) {
 		colour = document.getElementById('colour-select').value;
 		width = document.getElementById('width-select').value;
-		path = new Path.Rectangle(new Point(event.point.x-width,event.point.y-width),new Size(width*2,width*2));
+		path = new Path.Rectangle(new Point(event.point.x-width,event.point.y-width),new Size(width*5,width*5));
 		path.strokeColor = colour;
 	}
 	function mouseDownPumpkin(event) {
