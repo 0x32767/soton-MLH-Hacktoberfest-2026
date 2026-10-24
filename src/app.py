@@ -5,8 +5,8 @@ import base64
 from image_merger import Character
 
 # HEAD, ARM, LEG, TORSO
-ALL_PARTS = ["HEAD", "ARM", "LEG", "TORSO"]
-parts = {}
+ALL_PARTS = ["HEAD", "TORSO", "ARM", "LEG"]
+body = Character()
 images = []
 
 
@@ -14,40 +14,51 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    global taken_parts
+    global body
 
-    part_id = None
-
-    for part in ALL_PARTS:
-        if part not in parts:
-            part_id = part
-            break
+    if body.head is None:
+        return render_template("index.html", part_id="HEAD")
+    elif body.torso is None:
+        # get preview for head
+        body.get_preview_for_torso()
+        return render_template("index.html", part_id="TORSO")
+    elif body.arm is None:
+        # get preview for arm
+        body.get_preview_for_arm()
+        return render_template("index.html", part_id="ARM")
+    elif body.leg is None:
+        body.get_preview_for_leg()
+        return render_template("index.html", part_id="LEG")
     else:
-        return "wait"
-
-    return render_template("index.html", part_id=part_id)
+        return "WAIT"
+        # return render_template("index.html", part_id=part_id)
 
 @app.route("/submit-part", methods=["POST"])
 def submit_part():
-    global parts, imgaes
+    global body, imgaes
 
     part_id = request.form["part_id"]
-    if part_id in parts:
-        return "Part has already been done! Draw faster!  <a href='/'>go back!</a>"
+    if getattr(body, part_id.lower()) is not None:
+        return render_template("already-done.html")
 
     part = request.form["part"]
-    parts[part_id] = part.removeprefix("data:image/png;base64,")
+    raw_part = part.removeprefix("data:image/png;base64,")
 
-    if len(parts) == len(ALL_PARTS):
-        character = Character(
-            head_str=parts["HEAD"],
-            torso_str=parts["TORSO"],
-            arm_str=parts["ARM"],
-            leg_str=parts["LEG"],
-        )
-        data = character.save()
-        parts = {}
-        images.append(data)
+    if part_id == "HEAD":
+        body.add_head(raw_part)
+    elif part_id == "TORSO":
+        body.add_torso(raw_part)
+    elif part_id == "ARM":
+        body.add_arm(raw_part)
+    elif part_id == "LEG":
+        body.add_leg(raw_part)
+    else:
+        raise Exception(part_id)
+
+    if body.head is not None and body.torso is not None and body.arm is not None and body.leg is not None:
+        data = body.save()
+        images.append(body.save())
+        body = Character()
 
     return render_template("display.html", part_id=part_id, part=part)
 
