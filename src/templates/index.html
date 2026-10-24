@@ -5,10 +5,10 @@
 		<link href="/static/technical.css" rel="stylesheet"/>
 	</head>
 	<body>
-		<span id="part_id">{{part_id}}</span>
+		<h1 id="part_id">{{part_id}}</h1>
 		<img style="display:none" id="pumpkin" src="/static/spooky/pumpkin.png" />
 		<img style="display:none" id="web" src="/static/spooky/spiderweb.png" />
-		<img style="display:none" id="skull" src="/static/spooky/.png" />
+		<img style="display:none" id="skull" src="/static/spooky/skull.png" />
 
 		<div id="grid">
 			<canvas id="myCanvas" resize></canvas>
@@ -31,11 +31,11 @@
 				<!-- Tool select -->
 				<button onclick="tool1.activate();">Lines <img src="/static/images/pen.png" class="label-image" /></button><br/>
 				<button onclick="tool2.activate();">Clouds <img src="/static/images/cloud.png" class="label-image" /></button><br/>
-				<button onclick="tool3.activate();">Circle <img src="/static/images/cloud.png" class="label-image" /></button><br/>
-				<button onclick="tool4.activate();">Square</button><br/>
-				<button onclick="tool5.activate();">Pumpkin</button><br/>
-				<button onclick="tool6.activate();">Web</button><br/>
-				<button onclick="tool7.activate();">???</button><br/>
+				<button onclick="tool3.activate();">Circle <img src="/static/images/circle.png" class="label-image" /></button><br/>
+				<button onclick="tool4.activate();">Square <img src="/static/images/square.png" class="label-image" /></button><br/>
+				<button onclick="tool5.activate();">Pumpkin <img src="/static/spooky/pumpkin.png" class="label-image" /></button><br/>
+				<button onclick="tool6.activate();">Web <img src="/static/spooky/spiderweb.png" class="label-image" /></button><br/>
+				<button onclick="tool7.activate();">Skull <img src="/static/spooky/skull.png" class="label-image" /></button><br/>
 				<br/>
 
 				<form action="/submit-part" method="POST" enctype="multipart/form-data" onsubmit="submit_canvas()">

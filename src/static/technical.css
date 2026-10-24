@@ -1,4 +1,10 @@
 .label-image {
-	width: 20px;
+	width: 40px;
+	height: 40px;
 	margin-bottom: -4px;
+}
+button {
+	width:120px;
+	height:60px;
+	font-size:15px;
 }

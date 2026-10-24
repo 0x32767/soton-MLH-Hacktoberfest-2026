@@ -80,7 +80,7 @@ window.onload = function() {
 	tool6 = new Tool();
 	tool6.onMouseDown = mouseDownWeb;
 	tool7 = new Tool();
-	tool7.onMouseDown = mouseDownWeb;
+	tool7.onMouseDown = mouseDownSkull;
 }
 
 function submit_canvas() {
