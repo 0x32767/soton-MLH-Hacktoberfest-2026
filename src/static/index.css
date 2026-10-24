@@ -1,3 +1,8 @@
 #myCanvas {
 	border: 2px solid black;
 }
+
+#grid {
+	display: grid;
+	grid-template-columns: auto auto;
+}

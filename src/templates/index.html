@@ -6,27 +6,31 @@
 	<body>
 		<span style="display:none" id="part_id">{{part_id}}</span>
 
-		<canvas id="myCanvas" resize></canvas><br/>
+		<div id="grid">
+			<canvas id="myCanvas" resize></canvas>
 
-		<!-- Colour select -->
-		<label>Colour</label><br/>
-		<select id="colour-select" name="colour">
-			<option value="black"/>Black</option>
-			<option value="red"/>Red</option>
-		</select><br/><br/>
-		<label>Line Width</label><br/><input type="range" id="width-select" value="2"range max="20" min="1">
-		<br/>
-		<!-- Tool select -->
-		<a href="#" onclick="tool1.activate();">Lines</a><br/>
-		<a href="#" onclick="tool2.activate();">Clouds</a><br/>
-		<br/>
+			<div id="buttons">
+				<!-- Colour select -->
+				<label>Colour</label><br/>
+				<select id="colour-select" name="colour">
+					<option value="black"/>Black</option>
+					<option value="red"/>Red</option>
+				</select><br/><br/>
+				<label>Line Width</label><br/><input type="range" id="width-select" value="2"range max="20" min="1">
+				<br/>
+				<!-- Tool select -->
+				<a href="#" onclick="tool1.activate();">Lines</a><br/>
+				<a href="#" onclick="tool2.activate();">Clouds</a><br/>
+				<br/>
 
-		<form action="/submit-part" method="POST" enctype="multipart/form-data" onsubmit="submit_canvas()">
-			<input value="SUBMIT" type="submit"/>
-			<input type="hidden" value="{{game_id}}" name="game_id"/>
-			<input type="hidden" value="{{part_id}}" name="part_id"/>
-			<input style="display:none" id="image" name="part"/>
-		</form>
+				<form action="/submit-part" method="POST" enctype="multipart/form-data" onsubmit="submit_canvas()">
+					<input value="SUBMIT" type="submit"/>
+					<input type="hidden" value="{{game_id}}" name="game_id"/>
+					<input type="hidden" value="{{part_id}}" name="part_id"/>
+					<input style="display:none" id="image" name="part"/>
+				</form>
+			</div>
+		</div>
 		<script type="text/javascript" src="/static/paper-full.js"></script>
 		<script type="text/javascript" src="/static/index.js"></script>
 	</body>
