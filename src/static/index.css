@@ -1,10 +1,14 @@
 #myCanvas {
 	border: 2px solid black;
+}
+
+#body{
   margin: 0px;
-  background-color: #bf8352;
+  background-image: url ("/spooky/background");
   text-align: center;
   font-family: luminary, "sans-serif";
 }
+
 
 #grid {
   display: grid;
